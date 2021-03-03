@@ -1,6 +1,7 @@
 using Platformer.Mechanics;
 using Platformer.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Platformer.UI
 {
@@ -10,11 +11,7 @@ namespace Platformer.UI
     /// </summary>
     public class MetaGameController : MonoBehaviour
     {
-        /// <summary>
-        /// The main UI object which used for the menu.
-        /// </summary>
-        public MainUIController mainMenu;
-
+        public GameObject pausePanel;
         /// <summary>
         /// A list of canvas objects which are used during gameplay (when the main ui is turned off)
         /// </summary>
@@ -49,13 +46,13 @@ namespace Platformer.UI
             if (show)
             {
                 Time.timeScale = 0;
-                mainMenu.gameObject.SetActive(true);
+                pausePanel.gameObject.SetActive(true);
                 foreach (var i in gamePlayCanvasii) i.gameObject.SetActive(false);
             }
             else
             {
                 Time.timeScale = 1;
-                mainMenu.gameObject.SetActive(false);
+                pausePanel.gameObject.SetActive(false);
                 foreach (var i in gamePlayCanvasii) i.gameObject.SetActive(true);
             }
             this.showMainCanvas = show;
@@ -69,5 +66,9 @@ namespace Platformer.UI
             }
         }
 
+        public void ExitGame()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
     }
 }
