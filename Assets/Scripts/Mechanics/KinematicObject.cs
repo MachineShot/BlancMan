@@ -59,6 +59,11 @@ namespace Platformer.Mechanics
             velocity.x = dir.x;
         }
 
+        public void KnockBack(Vector2 dir)
+        {
+            body.AddForce(dir * 2);
+        }
+
         /// <summary>
         /// Teleport to some position.
         /// </summary>
