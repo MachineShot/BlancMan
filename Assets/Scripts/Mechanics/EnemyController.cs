@@ -12,6 +12,8 @@ namespace Platformer.Mechanics
     [RequireComponent(typeof(AnimationController), typeof(Collider2D))]
     public class EnemyController : MonoBehaviour
     {
+        public int health = 100;
+
         public PatrolPath path;
         public AudioClip ouch;
 
@@ -49,6 +51,19 @@ namespace Platformer.Mechanics
                 if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
                 control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
             }
+        }
+
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+            if (health <= 0)
+                Die();
+        }
+
+        void Die()
+        {
+            var death = Schedule<EnemyDeath>();
+            death.enemy = this;
         }
 
     }
