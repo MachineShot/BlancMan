@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Platformer.Core;
 using Platformer.Model;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Platformer.Gameplay
 {
@@ -29,6 +30,21 @@ namespace Platformer.Gameplay
                     player.audioSource.PlayOneShot(player.ouchAudio);
                 player.animator.SetTrigger("hurt");
                 player.animator.SetBool("dead", true);
+                Simulation.Schedule<PlayerSpawn>(2);
+            }
+            else
+            {
+                model.virtualCamera.m_Follow = null;
+                model.virtualCamera.m_LookAt = null;
+                // player.collider.enabled = false;
+                player.controlEnabled = false;
+
+                if (player.audioSource && player.ouchAudio)
+                    player.audioSource.PlayOneShot(player.ouchAudio);
+                player.animator.SetTrigger("hurt");
+                player.animator.SetBool("dead", true);
+                // ADD GAME OVER OVERLAY FUNCTION
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 Simulation.Schedule<PlayerSpawn>(2);
             }
         }
