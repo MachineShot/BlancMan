@@ -104,6 +104,7 @@ namespace Platformer.Mechanics
             }
         }
 
+        
         protected override void ComputeVelocity()
         {
             if (jump && IsGrounded)
@@ -122,18 +123,24 @@ namespace Platformer.Mechanics
 
             
             if (move.x > 0.01f && transform.rotation.y != 0)
+            {
                 transform.eulerAngles = new Vector3(
                     transform.eulerAngles.x,
                     transform.eulerAngles.y - 180,
                     transform.eulerAngles.z
                 );
+            }
+                
 
             else if (move.x < -0.01f && transform.rotation.y == 0)
+            {
                 transform.eulerAngles = new Vector3(
                     transform.eulerAngles.x,
                     transform.eulerAngles.y + 180,
                     transform.eulerAngles.z
                 );
+            }
+                
 
             animator.SetBool("grounded", IsGrounded);
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
