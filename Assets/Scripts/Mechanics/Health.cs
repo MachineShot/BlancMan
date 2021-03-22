@@ -1,5 +1,6 @@
 using System;
 using Platformer.Gameplay;
+using TMPro;
 using UnityEngine;
 using static Platformer.Core.Simulation;
 
@@ -10,16 +11,21 @@ namespace Platformer.Mechanics
     /// </summary>
     public class Health : MonoBehaviour
     {
+        public TextMeshProUGUI healthDisplay;
+
         /// <summary>
         /// The maximum hit points for the entity.
         /// </summary>
-        public int maxHP = 1;
+        public int maxHP = 3;
 
         /// <summary>
         /// Indicates if the entity should be considered 'alive'.
         /// </summary>
         public bool IsAlive => currentHP > 0;
 
+        /// <summary>
+        /// Current hit points for entity.
+        /// </summary>
         public int currentHP;
 
         /// <summary>
@@ -28,6 +34,7 @@ namespace Platformer.Mechanics
         public void Increment()
         {
             currentHP = Mathf.Clamp(currentHP + 1, 0, maxHP);
+            healthDisplay.text = currentHP.ToString();
         }
 
         /// <summary>
@@ -37,6 +44,7 @@ namespace Platformer.Mechanics
         public void Decrement()
         {
             currentHP = Mathf.Clamp(currentHP - 1, 0, maxHP);
+            healthDisplay.text = currentHP.ToString();
             if (currentHP == 0)
             {
                 var ev = Schedule<HealthIsZero>();
@@ -49,12 +57,13 @@ namespace Platformer.Mechanics
         /// </summary>
         public void Die()
         {
-            while (currentHP > 0) Decrement();
+            if (currentHP > 0) Decrement();
         }
 
         void Awake()
         {
             currentHP = maxHP;
+            healthDisplay.text = currentHP.ToString();
         }
     }
 }

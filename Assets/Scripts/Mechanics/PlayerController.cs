@@ -33,6 +33,7 @@ namespace Platformer.Mechanics
         /*internal new*/ public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
+        public int coins;
 
         bool jump;
         Vector2 move;
@@ -49,6 +50,7 @@ namespace Platformer.Mechanics
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
+            coins = 0;
         }
 
         protected override void Update()
@@ -118,10 +120,20 @@ namespace Platformer.Mechanics
                 }
             }
 
-            if (move.x > 0.01f)
-                spriteRenderer.flipX = false;
-            else if (move.x < -0.01f)
-                spriteRenderer.flipX = true;
+            
+            if (move.x > 0.01f && transform.rotation.y != 0)
+                transform.eulerAngles = new Vector3(
+                    transform.eulerAngles.x,
+                    transform.eulerAngles.y - 180,
+                    transform.eulerAngles.z
+                );
+
+            else if (move.x < -0.01f && transform.rotation.y == 0)
+                transform.eulerAngles = new Vector3(
+                    transform.eulerAngles.x,
+                    transform.eulerAngles.y + 180,
+                    transform.eulerAngles.z
+                );
 
             animator.SetBool("grounded", IsGrounded);
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
