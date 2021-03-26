@@ -21,13 +21,13 @@ namespace Platformer.Gameplay
         public override void Execute()
         {
             var willHurtEnemy = player.Bounds.center.y >= enemy.Bounds.max.y;
+            
 
-            if (willHurtEnemy)
+            if (willHurtEnemy && !player.invincible)
             {
                 var enemyHealth = enemy.GetComponent<Health>();
                 if (enemyHealth != null)
                 {
-                    enemyHealth.Decrement();
                     if (!enemyHealth.IsAlive)
                     {
                         Schedule<EnemyDeath>().enemy = enemy;
@@ -47,6 +47,10 @@ namespace Platformer.Gameplay
             else
             {
                 Schedule<PlayerDeath>();
+                player.invincible = true;
+                Debug.Log(player.invincible);
+                player.Invoke("resetInvulnerability", 2);
+                Debug.Log(player.invincible);
             }
         }
     }
