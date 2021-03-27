@@ -21,34 +21,38 @@ namespace Platformer.Gameplay
         public override void Execute()
         {
             var willHurtEnemy = player.Bounds.center.y >= enemy.Bounds.max.y;
-            
 
-            if (willHurtEnemy && !player.invincible)
+            if (!player.invincible)
             {
-                var enemyHealth = enemy.GetComponent<Health>();
-                if (enemyHealth != null)
+                if (willHurtEnemy)
                 {
-                    if (!enemyHealth.IsAlive)
+                    var enemyHealth = enemy.GetComponent<Health>();
+                    if (enemyHealth != null)
+                    {
+                        if (!enemyHealth.IsAlive)
+                        {
+                            Schedule<EnemyDeath>().enemy = enemy;
+                            player.Bounce(2);
+                        }
+                        else
+                        {
+                            player.Bounce(7);
+                        }
+                    }
+                    else
                     {
                         Schedule<EnemyDeath>().enemy = enemy;
                         player.Bounce(2);
                     }
-                    else
-                    {
-                        player.Bounce(7);
-                    }
                 }
                 else
                 {
-                    Schedule<EnemyDeath>().enemy = enemy;
-                    player.Bounce(2);
+                    Vector2 dir = new Vector2(enemy.mover.Position.x, 5f);
+                    player.KnockBack(dir);
+                    Schedule<PlayerDeath>();
+                    player.invincible = true;
+                    player.Invoke("resetInvulnerability", 2);
                 }
-            }
-            else
-            {
-                Schedule<PlayerDeath>();
-                player.invincible = true;
-                player.Invoke("resetInvulnerability", 2);
             }
         }
     }
