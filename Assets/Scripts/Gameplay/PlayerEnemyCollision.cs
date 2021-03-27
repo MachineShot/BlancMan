@@ -47,8 +47,7 @@ namespace Platformer.Gameplay
                 }
                 else
                 {
-                    Vector2 dir = new Vector2(enemy.mover.Position.x, 5f);
-                    player.KnockBack(dir);
+                    player.Bounce(5f);
                     Schedule<PlayerDeath>();
                     player.invincible = true;
                     player.Invoke("resetInvulnerability", 2);

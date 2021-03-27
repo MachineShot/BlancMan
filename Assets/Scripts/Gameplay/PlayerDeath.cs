@@ -24,7 +24,9 @@ namespace Platformer.Gameplay
             }
             else
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                StartDeath();
+                player.StartCoroutine(restartLevel());
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
 
@@ -35,11 +37,17 @@ namespace Platformer.Gameplay
             model.virtualCamera.m_Follow = null;
             model.virtualCamera.m_LookAt = null;
             player.controlEnabled = false;
-
+            player.collider2d.enabled = false;
             if (player.audioSource && player.ouchAudio)
                 player.audioSource.PlayOneShot(player.ouchAudio);
             player.animator.SetTrigger("hurt");
             player.animator.SetBool("dead", true);
+        }
+
+        IEnumerator restartLevel()
+        {
+            yield return new WaitForSeconds(3f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
