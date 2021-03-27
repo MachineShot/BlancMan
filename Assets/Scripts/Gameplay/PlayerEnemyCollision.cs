@@ -48,9 +48,7 @@ namespace Platformer.Gameplay
             {
                 Schedule<PlayerDeath>();
                 player.invincible = true;
-                Debug.Log(player.invincible);
                 player.Invoke("resetInvulnerability", 2);
-                Debug.Log(player.invincible);
             }
         }
     }
