@@ -34,6 +34,7 @@ namespace Platformer.Mechanics
         public Health health;
         public bool controlEnabled = true;
         public int coins;
+        public bool invincible = false;
 
         bool jump;
         Vector2 move;
@@ -155,6 +156,11 @@ namespace Platformer.Mechanics
             Jumping,
             InFlight,
             Landed
+        }
+
+        void resetInvulnerability()
+        {
+            invincible = false;
         }
     }
 }
