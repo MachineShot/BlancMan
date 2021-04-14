@@ -1,18 +1,17 @@
 ﻿using Platformer.Mechanics;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 20f;
-    public int damage = 40;
     public Rigidbody2D rb;
     public float timer = 2f;
+    WeaponController weapon;
 
     void Start()
     {
-        rb.velocity = transform.right * speed;
+        GameObject weaponObject = GameObject.FindGameObjectWithTag("ActiveWeapon");
+        weapon = weaponObject.GetComponent<WeaponController>();
+        rb.velocity = transform.right * weapon.bulletSpeed;
     }
 
     void Update()
@@ -33,6 +32,6 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         EnemyController enemy = hitInfo.GetComponent<EnemyController>();
         if (enemy != null)
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(weapon.damage);
     }
 }

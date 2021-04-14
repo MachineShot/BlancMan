@@ -16,4 +16,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 6669cfd7dbde999428be34b9dd7ddf95, type: 3}
   isDefaultItem: 0
   equipSlot: 0
-  mesh: {fileID: -777191556739481374, guid: cc4b0fc099cc3d2409aa1c0bd6b1cc01, type: 3}
+  mesh: {fileID: 895838906127257928, guid: 65cd537376d89294d8d75d0a6a1d1f38, type: 3}
