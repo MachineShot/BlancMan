@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Collisions
+  - ActiveWeapon
   layers:
   - Default
   - TransparentFX

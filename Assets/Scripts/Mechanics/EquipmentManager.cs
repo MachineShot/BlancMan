@@ -30,6 +30,8 @@ public class EquipmentManager : MonoBehaviour
         SkinnedMeshRenderer newMesh = Instantiate<SkinnedMeshRenderer>(newItem.mesh);
         newMesh.transform.parent = targetMesh.transform;
         newMesh.transform.localPosition = new Vector2(0.3f, -0.1f);
+        newMesh.transform.tag = "ActiveWeapon";
+        newMesh.gameObject.GetComponent<WeaponController>().enabled = true;
 
         newMesh.bones = targetMesh.bones;
         newMesh.rootBone = targetMesh.rootBone;
