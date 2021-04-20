@@ -50,7 +50,7 @@ namespace Platformer.Gameplay
                     player.Bounce(5f);
                     Schedule<PlayerDeath>();
                     player.invincible = true;
-                    player.Invoke("resetInvulnerability", 2);
+                    player.Invoke("ResetInvulnerability", 2);
                 }
             }
         }
