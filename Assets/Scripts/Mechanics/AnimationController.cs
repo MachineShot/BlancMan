@@ -36,9 +36,30 @@ namespace Platformer.Mechanics
         /// </summary>
         public bool stopJump;
 
+        /// <summary>
+        /// Set to true to enable random jumps
+        /// </summary>
+        public bool randomJumps;
+
+        /// <summary>
+        /// Random jump interval
+        /// </summary>
+        public float jumpInterval = 10f;
+
         SpriteRenderer spriteRenderer;
         Animator animator;
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
+
+        protected override void Start()
+        {
+            contactFilter.useTriggers = false;
+            contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
+            contactFilter.useLayerMask = true;
+            if (randomJumps)
+            {
+                InvokeRepeating("Jump", 2.0f, jumpInterval);
+            }
+        }
 
         protected virtual void Awake()
         {
@@ -71,6 +92,11 @@ namespace Platformer.Mechanics
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
+        }
+
+        void Jump()
+        {
+            jump = true;
         }
     }
 }
