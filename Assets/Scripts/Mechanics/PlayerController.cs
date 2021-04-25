@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Platformer.Gameplay;
 using static Platformer.Core.Simulation;
 using Platformer.Model;
 using Platformer.Core;
+using System.Collections;
 
 namespace Platformer.Mechanics
 {
@@ -17,6 +16,8 @@ namespace Platformer.Mechanics
         public AudioClip jumpAudio;
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
+
+        Transform position;
 
         /// <summary>
         /// Max horizontal speed of the player.
@@ -41,6 +42,8 @@ namespace Platformer.Mechanics
         SpriteRenderer spriteRenderer;
         internal Animator animator;
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
+
+        
 
         public Bounds Bounds => collider2d.bounds;
 
@@ -71,6 +74,7 @@ namespace Platformer.Mechanics
             {
                 move.x = 0;
             }
+
             UpdateJumpState();
             base.Update();
         }
@@ -112,6 +116,8 @@ namespace Platformer.Mechanics
             {
                 velocity.y = jumpTakeOffSpeed * model.jumpModifier;
                 jump = false;
+
+                OneWayPlaftorm();
             }
             else if (stopJump)
             {
@@ -158,9 +164,29 @@ namespace Platformer.Mechanics
             Landed
         }
 
-        void resetInvulnerability()
+        void ResetInvulnerability()
         {
             invincible = false;
+        }
+
+        void OneWayPlaftorm()
+        {
+            int layerMask = 1 << 8;
+            Vector3 up = transform.TransformDirection(Vector3.up);
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, up, 2f, layerMask);
+
+            if (hit.collider != null)
+            {
+                collider2d.enabled = false;
+                StartCoroutine(Timer(0.5f));
+            }
+        }
+
+        IEnumerator Timer(float time)
+        {
+            yield return new WaitForSeconds(time);
+            collider2d.enabled = true;
         }
     }
 }
