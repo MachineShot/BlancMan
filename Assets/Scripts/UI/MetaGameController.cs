@@ -12,6 +12,7 @@ namespace Platformer.UI
     public class MetaGameController : MonoBehaviour
     {
         public GameObject pausePanel;
+        public GameObject gameOverMenu;
         /// <summary>
         /// A list of canvas objects which are used during gameplay (when the main ui is turned off)
         /// </summary>
@@ -69,6 +70,11 @@ namespace Platformer.UI
         public void ExitGame()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+
+        public void ReloadGame()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

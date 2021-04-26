@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Platformer.Core;
 using Platformer.Model;
+using Platformer.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,7 @@ namespace Platformer.Gameplay
     public class PlayerDeath : Simulation.Event<PlayerDeath>
     {
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
+
         public override void Execute()
         {
             var player = model.player;
@@ -25,8 +27,7 @@ namespace Platformer.Gameplay
             else
             {
                 StartDeath();
-                player.StartCoroutine(restartLevel());
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                restartLevel();
             }
         }
 
@@ -44,10 +45,11 @@ namespace Platformer.Gameplay
             player.animator.SetBool("dead", true);
         }
 
-        IEnumerator restartLevel()
+        void restartLevel()
         {
-            yield return new WaitForSeconds(3f);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameObject controller = GameObject.Find("GameController");
+            MetaGameController meta = controller.GetComponent<MetaGameController>();
+            meta.gameOverMenu.SetActive(true);
         }
     }
 }
