@@ -21,7 +21,7 @@ namespace Platformer.Mechanics
         /// <summary>
         /// Indicates if the entity should be considered 'alive'.
         /// </summary>
-        public bool IsAlive => currentHP > 0;
+        public bool IsAlive => currentHP > 1;
 
         /// <summary>
         /// Current hit points for entity.
