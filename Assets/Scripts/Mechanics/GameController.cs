@@ -11,6 +11,8 @@ namespace Platformer.Mechanics
     public class GameController : MonoBehaviour
     {
         public static GameController Instance { get; private set; }
+        public Vector2 lastCheckpointPos;
+        public int lastCheckpointNumber;
 
         //This model field is public and can be therefore be modified in the 
         //inspector.
