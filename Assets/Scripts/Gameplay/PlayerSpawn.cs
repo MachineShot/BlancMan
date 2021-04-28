@@ -1,6 +1,7 @@
 using Platformer.Core;
 using Platformer.Mechanics;
 using Platformer.Model;
+using UnityEngine;
 
 namespace Platformer.Gameplay
 {
@@ -10,10 +11,13 @@ namespace Platformer.Gameplay
     public class PlayerSpawn : Simulation.Event<PlayerSpawn>
     {
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
+        private GameController gc;
 
         public override void Execute()
         {
+            gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
             var player = model.player;
+            player.transform.position = gc.lastCheckpointPos;
             player.collider2d.enabled = true;
             player.controlEnabled = false;
             if (player.audioSource && player.respawnAudio)
