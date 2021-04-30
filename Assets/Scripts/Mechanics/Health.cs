@@ -1,5 +1,7 @@
 using System;
+using Platformer.Core;
 using Platformer.Gameplay;
+using Platformer.Model;
 using TMPro;
 using UnityEngine;
 using static Platformer.Core.Simulation;
@@ -34,7 +36,7 @@ namespace Platformer.Mechanics
         public void Increment()
         {
             currentHP = Mathf.Clamp(currentHP + 1, 0, maxHP);
-            healthDisplay.text = currentHP.ToString();
+            //healthDisplay.text = currentHP.ToString();
         }
 
         /// <summary>
@@ -44,7 +46,7 @@ namespace Platformer.Mechanics
         void Decrement()
         {
             currentHP = Mathf.Clamp(currentHP - 1, 0, maxHP);
-            healthDisplay.text = currentHP.ToString();
+            //healthDisplay.text = currentHP.ToString();
             if (currentHP <= 0)
             {
                 var ev = Schedule<HealthIsZero>();
@@ -60,9 +62,8 @@ namespace Platformer.Mechanics
             if (currentHP > 0) Decrement();
         }
 
-        void Awake()
+        void Update()
         {
-            currentHP = maxHP;
             healthDisplay.text = currentHP.ToString();
         }
     }

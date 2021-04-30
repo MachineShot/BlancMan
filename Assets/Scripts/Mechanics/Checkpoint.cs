@@ -17,6 +17,7 @@ public class Checkpoint : MonoBehaviour
         {
             gc.lastCheckpointPos = transform.position;
             gc.lastCheckpointNumber = checkpointNumber;
+            SaveSystem.SavePlayer(gc);
         }
     }
 }
