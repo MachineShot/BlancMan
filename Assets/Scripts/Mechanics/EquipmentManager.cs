@@ -16,6 +16,7 @@ public class EquipmentManager : MonoBehaviour
     Equipment[] currentEquipment;
     SkinnedMeshRenderer[] currentMeshes;
     public SkinnedMeshRenderer targetMesh;
+    //public bool handsNotEmpty = false;
     private void Start()
     {
         int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
@@ -25,6 +26,7 @@ public class EquipmentManager : MonoBehaviour
     public void Equip(Equipment newItem)
     {
         int slotIndex = (int)newItem.equipSlot;
+        DestroyOldEquipment(slotIndex);
 
         currentEquipment[slotIndex] = newItem;
         SkinnedMeshRenderer newMesh = Instantiate<SkinnedMeshRenderer>(newItem.mesh);
@@ -36,5 +38,17 @@ public class EquipmentManager : MonoBehaviour
         newMesh.bones = targetMesh.bones;
         newMesh.rootBone = targetMesh.rootBone;
         currentMeshes[slotIndex] = newMesh;
+    }
+    public void DestroyOldEquipment(int slotIndex)
+    {
+        if (currentEquipment[slotIndex] != null)
+        {
+            if (currentMeshes[slotIndex] != null)
+            {
+                Destroy(currentMeshes[slotIndex].gameObject);
+                currentMeshes[slotIndex] = null;
+            }
+            currentEquipment[slotIndex] = null;
+        }
     }
 }
