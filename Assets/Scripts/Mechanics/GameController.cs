@@ -1,6 +1,7 @@
 using Platformer.Core;
 using Platformer.Model;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Platformer.Mechanics
 {
@@ -11,6 +12,11 @@ namespace Platformer.Mechanics
     public class GameController : MonoBehaviour
     {
         public static GameController Instance { get; private set; }
+        public Vector2 lastCheckpointPos;
+        public int lastCheckpointNumber;
+        public int level;
+        public int health;
+        public int score;
 
         //This model field is public and can be therefore be modified in the 
         //inspector.
@@ -22,6 +28,18 @@ namespace Platformer.Mechanics
 
         void OnEnable()
         {
+            level = SceneManager.GetActiveScene().buildIndex;
+            if (SaveSystem.isScenebeingLoaded)
+            {
+                SaveSystem.LoadPlayer();
+                model.player.gameObject.transform.position = new Vector3(SaveSystem.copyData.checkpointPos[0], SaveSystem.copyData.checkpointPos[1]);
+                model.player.health.currentHP = SaveSystem.copyData.health;
+                model.player.coins = SaveSystem.copyData.score;
+                level = SaveSystem.copyData.level;
+                lastCheckpointPos.x = SaveSystem.copyData.checkpointPos[0];
+                lastCheckpointPos.y = SaveSystem.copyData.checkpointPos[1];
+                lastCheckpointNumber = SaveSystem.copyData.checkpointNumber;
+            }
             Instance = this;
         }
 
@@ -32,6 +50,8 @@ namespace Platformer.Mechanics
 
         void Update()
         {
+            health = model.player.health.currentHP;
+            score = model.player.coins;
             if (Instance == this) Simulation.Tick();
         }
     }
