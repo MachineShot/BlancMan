@@ -183,6 +183,17 @@ namespace Platformer.Mechanics
             }
         }
 
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.tag.Equals("Trap"))
+            {
+                Bounce(5f);
+                Schedule<PlayerDeath>();
+                invincible = true;
+                Invoke("ResetInvulnerability", 2);
+            }
+        }
+
         IEnumerator Timer(float time)
         {
             yield return new WaitForSeconds(time);

@@ -69,7 +69,7 @@ namespace Platformer.UI
 
         public void ExitGame()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            SceneManager.LoadScene(0);
         }
 
         public void ReloadGame()

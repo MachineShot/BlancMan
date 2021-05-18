@@ -43,4 +43,18 @@ public static class SaveSystem
             return null;
         }
     }
+
+    public static void DeleteSave()
+    {
+        string path = Application.persistentDataPath + "/player.saved";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Debug.Log("Deleted save file");
+        }
+        else
+        {
+            Debug.Log("Save file not found");
+        }
+    }
 }

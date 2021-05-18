@@ -16,7 +16,6 @@ public class EquipmentManager : MonoBehaviour
     Equipment[] currentEquipment;
     SkinnedMeshRenderer[] currentMeshes;
     public SkinnedMeshRenderer targetMesh;
-    //public bool handsNotEmpty = false;
     private void Start()
     {
         int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;

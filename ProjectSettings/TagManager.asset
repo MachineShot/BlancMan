@@ -9,6 +9,8 @@ TagManager:
   - ActiveWeapon
   - OverMenu
   - Enemy
+  - Trap
+  - Saw
   layers:
   - Default
   - TransparentFX
