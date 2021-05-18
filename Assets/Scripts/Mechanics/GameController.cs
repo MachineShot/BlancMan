@@ -36,6 +36,7 @@ namespace Platformer.Mechanics
                 model.player.health.currentHP = SaveSystem.copyData.health;
                 model.player.coins = SaveSystem.copyData.score;
                 level = SaveSystem.copyData.level;
+                //SceneManager.LoadScene(level);
                 lastCheckpointPos.x = SaveSystem.copyData.checkpointPos[0];
                 lastCheckpointPos.y = SaveSystem.copyData.checkpointPos[1];
                 lastCheckpointNumber = SaveSystem.copyData.checkpointNumber;

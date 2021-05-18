@@ -10,8 +10,11 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         GameObject weaponObject = GameObject.FindGameObjectWithTag("ActiveWeapon");
-        weapon = weaponObject.GetComponent<WeaponController>();
-        rb.velocity = transform.right * weapon.bulletSpeed;
+        if(weaponObject != null)
+        {
+            weapon = weaponObject.GetComponent<WeaponController>();
+            rb.velocity = transform.right * weapon.bulletSpeed;
+        }
     }
 
     void Update()
