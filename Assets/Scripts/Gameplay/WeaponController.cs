@@ -15,9 +15,11 @@ public class WeaponController : MonoBehaviour
     public int ammo = 5;
     public float elapsedTime;
     public bool canReload;
+    AudioSource shootingSound;
 
     private void Start()
     {
+        shootingSound = GetComponent<AudioSource>();
         ammo = clipSize;
         elapsedTime = fireSpeed;
         canReload = true;
@@ -37,6 +39,7 @@ public class WeaponController : MonoBehaviour
                 if (Input.GetButtonDown("Fire1") && elapsedTime >= fireSpeed)
                 {
                     elapsedTime = 0;
+                    shootingSound.Play();
                     Shoot();
                 }
             }
