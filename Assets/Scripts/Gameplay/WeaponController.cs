@@ -26,25 +26,28 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        if (elapsedTime < fireSpeed)
+        if (gameObject.tag.Equals("ActiveWeapon"))
         {
-            elapsedTime += Time.deltaTime;
-        }
-        if(ammo > 0)
-        {
-            if (Input.GetButtonDown("Fire1") && elapsedTime >= fireSpeed)
+            if (elapsedTime < fireSpeed)
             {
-                elapsedTime = 0;
-                Shoot();
+                elapsedTime += Time.deltaTime;
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.R) && canReload)
-        {
-            StartCoroutine(ReloadWait(reloadSpeed));
-        }
-        else
-        {
-            reloadDisplay.enabled = true;
+            if (ammo > 0)
+            {
+                if (Input.GetButtonDown("Fire1") && elapsedTime >= fireSpeed)
+                {
+                    elapsedTime = 0;
+                    Shoot();
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.R) && canReload)
+            {
+                StartCoroutine(ReloadWait(reloadSpeed));
+            }
+            else
+            {
+                reloadDisplay.enabled = true;
+            }
         }
     }
 

@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
 {
     void Start()
     {
-        string path = Application.persistentDataPath + "/player.isgay";
+        string path = Application.persistentDataPath + "/player.saved";
         if (!File.Exists(path))
         {
             Button menu = GameObject.Find("Continue button").GetComponent<Button>();
@@ -22,12 +22,15 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        SaveSystem.DeleteSave();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void ContinueGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SaveSystem.LoadPlayer();
+        SceneManager.LoadScene(SaveSystem.copyData.level);
+        Debug.Log(SaveSystem.copyData.level);
         SaveSystem.isScenebeingLoaded = true;
         Debug.Log("CONTINUE GAME");
     }

@@ -11,7 +11,7 @@ public static class SaveSystem
     public static void SavePlayer(GameController gc)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.isgay";
+        string path = Application.persistentDataPath + "/player.saved";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData(gc);
@@ -24,7 +24,7 @@ public static class SaveSystem
 
     public static PlayerData LoadPlayer()
     {
-        string path = Application.persistentDataPath + "/player.isgay";
+        string path = Application.persistentDataPath + "/player.saved";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -41,6 +41,20 @@ public static class SaveSystem
         {
             Debug.LogError("Save file not found in " + path);
             return null;
+        }
+    }
+
+    public static void DeleteSave()
+    {
+        string path = Application.persistentDataPath + "/player.saved";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Debug.Log("Deleted save file");
+        }
+        else
+        {
+            Debug.Log("Save file not found");
         }
     }
 }
