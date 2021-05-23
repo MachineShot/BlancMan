@@ -1,5 +1,6 @@
 using Platformer.Mechanics;
 using Platformer.UI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,7 @@ namespace Platformer.UI
         /// A list of canvas objects which are used during gameplay (when the main ui is turned off)
         /// </summary>
         public Canvas[] gamePlayCanvasii;
+        public TextMeshProUGUI levelDisplay;
 
         /// <summary>
         /// The game controller.
@@ -28,6 +30,7 @@ namespace Platformer.UI
         void OnEnable()
         {
             _ToggleMainMenu(showMainCanvas);
+            
         }
 
         /// <summary>
@@ -61,6 +64,7 @@ namespace Platformer.UI
 
         void Update()
         {
+            levelDisplay.text = gameController.level.ToString();
             if (Input.GetButtonDown("Menu"))
             {
                 ToggleMainMenu(show: !showMainCanvas);

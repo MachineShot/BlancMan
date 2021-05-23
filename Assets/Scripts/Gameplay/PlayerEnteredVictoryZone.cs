@@ -1,6 +1,9 @@
 using Platformer.Core;
 using Platformer.Mechanics;
 using Platformer.Model;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Platformer.Gameplay
 {
@@ -19,6 +22,14 @@ namespace Platformer.Gameplay
         {
             model.player.animator.SetTrigger("victory");
             model.player.controlEnabled = false;
+            model.player.StartCoroutine(Wait(2f));
+        }
+
+        IEnumerator Wait(float length)
+        {
+            Debug.Log("Starting new level...");
+            yield return new WaitForSeconds(length);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
