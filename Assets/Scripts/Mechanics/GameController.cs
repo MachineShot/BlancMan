@@ -13,6 +13,7 @@ namespace Platformer.Mechanics
     {
         public static GameController Instance { get; private set; }
         public Vector2 lastCheckpointPos;
+        public Vector2 spawnPoint;
         public int lastCheckpointNumber;
         public int level;
         public int health;
@@ -29,6 +30,8 @@ namespace Platformer.Mechanics
         void OnEnable()
         {
             level = SceneManager.GetActiveScene().buildIndex;
+            lastCheckpointPos.x = model.spawnPoint.transform.position.x;
+            lastCheckpointPos.y = model.spawnPoint.transform.position.y;
             if (SaveSystem.isScenebeingLoaded)
             {
                 SaveSystem.LoadPlayer();

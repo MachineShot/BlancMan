@@ -30,6 +30,7 @@ public class WeaponController : MonoBehaviour
     {
         if (gameObject.tag.Equals("ActiveWeapon"))
         {
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
             if (elapsedTime < fireSpeed)
             {
                 elapsedTime += Time.deltaTime;
