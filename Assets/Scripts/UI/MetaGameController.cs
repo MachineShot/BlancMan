@@ -78,7 +78,7 @@ namespace Platformer.UI
 
         public void ReloadGame()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(1);
         }
     }
 }

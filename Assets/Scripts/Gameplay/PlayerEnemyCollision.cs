@@ -24,7 +24,7 @@ namespace Platformer.Gameplay
 
             if (!player.invincible)
             {
-                if (willHurtEnemy && !enemy.tag.Equals("Saw"))
+                if (willHurtEnemy && !enemy.tag.Equals("Saw") && !enemy.tag.Equals("Boss"))
                 {
                     var enemyHealth = enemy.GetComponent<Health>();
                     if (enemyHealth != null)
