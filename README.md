@@ -11,7 +11,6 @@
 
   <p align="center">
     A 2D platformer inspired by Mega Man and Mario.
-    <a href="https://github.com/MachineShot/BlancMan">View Demo</a>
   </p>
 </div>
 
