@@ -7,8 +7,6 @@
     <img src="images/logo.png" alt="Logo" width="600">
   </a>
 
-<h3 align="center">MachineShot</h3>
-
   <p align="center">
     A 2D platformer inspired by Mega Man and Mario.
   </p>
