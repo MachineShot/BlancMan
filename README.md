@@ -1,4 +1,24 @@
-Projekto idėjos aprašas
-Mūsų idėja sukurti kompiuterinį žaidimą kilo dėl to, nes žaisdami kitus žaidimus įžvelgiame juose įvairius trūkumus, kuriuos patys, kaip būsimi kūrėjai, galėtume patobulinti ir taip sukurti, savo manymu, produktą, kuris išpildytų žaidėjų lūkesčius ir būtų be techninių trūkumų.  
-Galutinis produktas turėtų tikti kuo platesnei auditorijai, nes esami žaidimai dažnai netinka jaunesnei auditorijai, nes būna per sudėtingi, arba netinka vyresniems žaidėjams, kadangi žaidimas atrodo per “vaikiškas”. 
-Žaidimas yra įkvėptas 1987m. “Mega Man” žaidimo, sukurto “Capcom” kompanijos, NES kompiuterinei sistemai. Mūsų produktas išsiskirs žaidimo patirtimi, sudėtingumo lygiais, garso ir vaizdo dizaino atžvilgiais, turės „tutorial“ lygius, dviejų žaidėjų rėžimą. Produktas bus išleidžiamas “Windows” kompiuterinei sistemai, vėliau planuojama ir palaikyti mobiliųjų telefonų “Android” ir “iOS” sistemas.
+<a name="readme-top"></a>
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/MachineShot/BlancMan">
+    <img src="images/logo.png" alt="Logo" width="600">
+  </a>
+
+<h3 align="center">MachineShot</h3>
+
+  <p align="center">
+    A 2D platformer inspired by Mega Man and Mario.
+    <a href="https://github.com/MachineShot/BlancMan">View Demo</a>
+  </p>
+</div>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+<p>We wanted to design and create a game that is simple enough for younger players but also emerging and fun for older audiences. Pixel art, engaging level design and of course WEAPONS!</p>
+
+[![Made with Unity](https://img.shields.io/badge/Made%20with-Unity-57b9d3.svg?style=for-the-badge&logo=unity)](https://unity3d.com)
